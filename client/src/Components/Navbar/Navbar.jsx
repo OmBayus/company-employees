@@ -4,9 +4,11 @@ import {Container} from "react-bootstrap"
 import logo from "./logo512.png"
 
 import "./Navbar.css"
+
 var min = new Date().getMinutes()
 var hour = new Date().getHours()
 var second = new Date().getSeconds()
+
 const Tarih = ()=>{
       const [saat,setSaat] = useState(hour+":"+min+":"+second)
 
@@ -35,16 +37,16 @@ const Tarih = ()=>{
       )
 }
 
-const Navbar = ()=>{
-      const [isOpen,setIsOpen] = useState(true)
+const Navbar = (props)=>{
+      const [isOpen,setIsOpen] = useState(false)
       const handleNav = ()=>{
             setIsOpen(!isOpen)
       }
       return(
             <div>
-                  {!isOpen && <button onClick={handleNav} className="nav-open-btn"><i class="fas fa-bars"></i></button>}
+                  {!isOpen && <button onClick={handleNav} className="nav-open-btn"><i className="fas fa-bars"></i></button>}
                   <div id="navbar" className={isOpen ? "nav_open" : "nav_close"}>
-                        <button onClick={handleNav} className="navbar-btn"><i class="fas fa-times"></i></button>
+                        <button onClick={handleNav} className="navbar-btn"><i className="fas fa-times"></i></button>
                         <div className="navbar-logo">
                               <div><img src={logo} alt="logo" className="navbar-logo-img" /></div>
                         </div>
@@ -57,7 +59,7 @@ const Navbar = ()=>{
                               </ul>
                         </Container>
                         <Container className="nav-footer">
-                              <h5>Personel Sayısı: 120</h5>
+                              <h5>Personel Sayısı: {props.membersNumber}</h5>
                               <Tarih/>
                         </Container>
                         
