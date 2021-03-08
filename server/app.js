@@ -1,10 +1,30 @@
 const express = require("express")
-
 const app = express()
 
-app.get("/",(req,res)=>res.send("Hello"))
+const config = require("./utils/config")
+const logger = require("./utils/logger")
+
+const peopleRouter = require("./routers/people")
+
+const middleware = require("./utils/middleware")
+
+const cors = require('cors')
+
+app.use(cors())
+
+app.use(express.json())
+
+// app.use(express.static('build'))
+
+app.use("/api",peopleRouter)
+
+app.use(middleware.unknownEndpoint)
 
 
+app.use(middleware.errorHandler)
 
+const PORT = config.PORT
 
-app.listen(4000,()=>console.log("Server started"))
+app.listen(PORT, () => {
+      logger.info(`Server running on port ${config.PORT}`)
+})
