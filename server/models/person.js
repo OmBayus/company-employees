@@ -21,7 +21,7 @@ const personSchema = new mongoose.Schema({
     required:true
   },
   unvan:{
-    type:Date,
+    type:String,
     required:true
   },
   no:{
