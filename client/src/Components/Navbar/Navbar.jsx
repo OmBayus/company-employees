@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState,useContext } from "react"
 import {Container} from "react-bootstrap"
 
 import logo from "./logo512.png"
 
 import "./Navbar.css"
+
+import {Context} from "../../Context"
 
 var min = new Date().getMinutes()
 var hour = new Date().getHours()
@@ -37,11 +39,22 @@ const Tarih = ()=>{
       )
 }
 
-const Navbar = (props)=>{
+const Navbar = ()=>{
       const [isOpen,setIsOpen] = useState(false)
+
+      const {peopleContext} = useContext(Context)
+
+      const [people,setPeople] = peopleContext
+
+
       const handleNav = ()=>{
             setIsOpen(!isOpen)
       }
+
+      useEffect(()=>{
+            setPeople(prevValue=>prevValue) // Just made to ignore error message
+      },[setPeople])
+      
       return(
             <div>
                   {!isOpen && <button onClick={handleNav} className="nav-open-btn"><i className="fas fa-bars"></i></button>}
@@ -59,7 +72,7 @@ const Navbar = (props)=>{
                               </ul>
                         </Container>
                         <Container className="nav-footer">
-                              <h5>Personel Sayısı: {props.membersNumber}</h5>
+                              <h5>Personel Sayısı: {people.length}</h5>
                               <Tarih/>
                         </Container>
                         

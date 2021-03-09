@@ -34,8 +34,8 @@ const Main = ()=>{
                   })
       },[setPeople])
 
-      const handleClick = ()=>{
-            console.log("sa")
+      const handleClick = (e)=>{
+            console.log(e.target)
       }
 
       const handleSearch = (e)=>{
