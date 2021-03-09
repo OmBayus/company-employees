@@ -1,5 +1,7 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Container, Form, Row, Col,Card } from "react-bootstrap"
+
+import PeopleService from "../../services/People"
 
 import {Context} from "../../Context"
 
@@ -24,6 +26,13 @@ const Main = ()=>{
       const {peopleContext} = useContext(Context)
 
       const [people,setPeople] = peopleContext
+
+      useEffect(()=>{
+            PeopleService.getAll()
+                  .then(data=>{
+                        setPeople(data)
+                  })
+      },[setPeople])
 
       const handleClick = ()=>{
             console.log("sa")
@@ -62,7 +71,7 @@ const Main = ()=>{
             <div style={{padding:"20px"}}>
                   <Row>
                   {
-                        people.filter(item=>item.unvan.toLocaleLowerCase().includes(search.unvan.toLocaleLowerCase())).filter(item=>(item.name.toLocaleLowerCase().includes(search.name.toLocaleLowerCase()) || item.no.toLocaleLowerCase().includes(search.name.toLocaleLowerCase()))).map((item,index)=>(
+                        people.filter(item=>item.unvan.toLocaleLowerCase().includes(search.unvan.toLocaleLowerCase())).filter(item=>(item.name.toLocaleLowerCase().includes(search.name.toLocaleLowerCase()) || String(item.no).toLocaleLowerCase().includes(search.name.toLocaleLowerCase()))).map((item,index)=>(
                               <Col md={4} key={index}><MainUser click={handleClick} info={item}/></Col>
                         ))
                   }
