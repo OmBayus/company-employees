@@ -1,5 +1,7 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Container, Form, Row, Col,Card } from "react-bootstrap"
+
+import {Context} from "../../Context"
 
 import "./Main.css"
 
@@ -15,9 +17,13 @@ const MainUser = ({click,info})=>(
 ) 
 
 
-const Main = ({people})=>{
+const Main = ()=>{
 
       const [search,setSearch] = useState({name:"",unvan:""})
+
+      const {peopleContext} = useContext(Context)
+
+      const [people,setPeople] = peopleContext
 
       const handleClick = ()=>{
             console.log("sa")
