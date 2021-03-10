@@ -115,7 +115,7 @@
 }
 
 .navbar-ul li a:hover{
-      opacity: 0.7;
+      opacity: 0.5;
       text-decoration: none;
 }
 
@@ -127,3 +127,6 @@
       white-space: nowrap!important;
 }
 
+.active{
+      opacity: 0.5;
+}

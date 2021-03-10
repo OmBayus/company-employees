@@ -1,0 +1,33 @@
+.addperson{
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      background-color: #bbb;
+}
+
+.addperson-form{
+      background-color: white;
+      padding: 25px;
+      border-radius: 50px;
+}
+
+.addperson-img{
+      max-height:250px ;
+      border-radius: 30px;
+      
+}
+
+.dropzone {
+  text-align: center;
+  padding: 20px;
+  border: 2px dashed black;
+  background-color: #fafafa;
+  color: #bdbdbd;
+  border-radius: 50px;
+  margin: 20px 0;
+}
+
+.dropzone:focus{
+  outline: none;
+  border: 2px dashed blue;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState,useContext } from "react"
 import {Container} from "react-bootstrap"
+import {Link} from "react-router-dom"
 
 import logo from "./logo512.png"
 
@@ -39,7 +40,7 @@ const Tarih = ()=>{
       )
 }
 
-const Navbar = ()=>{
+const Navbar = ({active})=>{
       const [isOpen,setIsOpen] = useState(false)
 
       const {peopleContext} = useContext(Context)
@@ -65,10 +66,10 @@ const Navbar = ()=>{
                         </div>
                         <Container>
                               <ul className="navbar-ul">
-                                    <li><a href="/">AnaSayfa</a></li>
-                                    <li><a href="/">Kişi Ekle</a></li>
-                                    <li><a href="/">Kişi Düzenle</a></li>
-                                    <li><a href="/">Kişi Sil</a></li>
+                                    <li><Link to="/" className={""+(active === 1 && "active")}>AnaSayfa</Link></li>
+                                    <li><Link to="/kisiekle" className={""+(active === 2 && "active")}>Kişi Ekle</Link></li>
+                                    <li><Link to="/" className={""+(active === 3 && "active")}>Kişi Düzenle</Link></li>
+                                    <li><Link to="/" className={""+(active === 4 && "active")}>Kişi Sil</Link></li>
                               </ul>
                         </Container>
                         <Container className="nav-footer">
