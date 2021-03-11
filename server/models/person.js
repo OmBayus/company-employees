@@ -27,7 +27,8 @@ const personSchema = new mongoose.Schema({
   no:{
         type:Number,
         required:true
-  }
+  },
+  imgPath:String
 })
 
 module.exports = mongoose.model('Person', personSchema)

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import Dropzone from "react-dropzone";
 
-import { Container, Form, Button } from "react-bootstrap"
+import { Container, Form, Button,Alert } from "react-bootstrap"
+import Fade from "react-reveal"
 
 import PeopleService from "../../services/People"
 
@@ -12,14 +13,19 @@ import "./AddPerson.css"
 
 const AddPerson = ()=>{
 
+      //People Context
       const {peopleContext} = useContext(Context)
-
       const [people,setPeople] = peopleContext
 
-      const [file, setFile] = useState([]);
 
+      //For error handling
+      const [Check,setCheck] = useState({isError:false,msg:"Hata"})
+      //Img State
+      const [file, setFile] = useState([]);
+      //New Person State 
       const [User,setUser] = useState({name:"",unvan:"Çalışan",no:""})
 
+      //Get Data from server
       useEffect(()=>{
             PeopleService.getAll()
                   .then(data=>{
@@ -27,6 +33,7 @@ const AddPerson = ()=>{
                   })
       },[setPeople])
 
+      //Get img in client
       const handleDrop = acceptedFiles =>{
 
             var reader = new FileReader()
@@ -38,6 +45,7 @@ const AddPerson = ()=>{
             setFile(acceptedFiles[0]);
       }
 
+      //Get new User information 
       const handleUser = e =>{
             const {name,value} = e.target
 
@@ -54,14 +62,15 @@ const AddPerson = ()=>{
             })
       }
 
+      //Send Data to server
       const addUser = async (e)=>{
             e.preventDefault()
 
             const temp = people.filter(item=> String(item.no) === User.no)
 
             if(temp.length > 0){
-                  console.log("Bu sicil no ya sahip kullanıcı var.")
-                  console.log(temp)
+                  setCheck({isError:true,msg:"Bu sicil no ya sahip kullanıcı var."})
+                  setTimeout(()=>{setCheck({isError:false,msg:"Hata"})},10000)
             }
             else{
                   const data = new FormData()
@@ -71,7 +80,14 @@ const AddPerson = ()=>{
                   data.append("file",file)
                   const res = await PeopleService.create(data)
 
-                  console.log(res)
+                  if(res.error){
+                        setCheck({isError:true,msg:res.error})
+                        setTimeout(()=>{setCheck({isError:false,msg:"Hata"})},10000)
+                  }
+                  else{
+                        console.log(res)
+                        setPeople(prevValue=>[...prevValue,res])
+                  }
             }
 
             // console.log(people)
@@ -82,6 +98,7 @@ const AddPerson = ()=>{
 
       return(
       <div className="addperson">
+            {Check.isError && <div className="login-alert"><Fade top><Alert variant="danger">{Check.msg}</Alert></Fade></div>}
             <Container className="text-center">
                   <div className="addperson-form">
                         <img id="resim" src="#" alt="img" className="addperson-img" />

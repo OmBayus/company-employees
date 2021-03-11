@@ -9,7 +9,7 @@ import "./Main.css"
 
 const MainUser = ({click,info})=>(
       <Card className="main-user" onClick={click}>
-            <Card.Img variant="top" src="/profil.png" />
+            <Card.Img variant="top" src={info.imgPath} />
             <Card.Body>
             <Card.Title>{info.name}</Card.Title>
             <Card.Title>{info.unvan}</Card.Title>

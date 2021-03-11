@@ -31,3 +31,9 @@
   outline: none;
   border: 2px dashed blue;
 }
+
+.login-alert{
+  position: fixed;
+  top: 10px;
+  left: 45%;
+}
