@@ -68,8 +68,6 @@ const Navbar = ({active})=>{
                               <ul className="navbar-ul">
                                     <li><Link to="/" className={""+(active === 1 && "active")}>AnaSayfa</Link></li>
                                     <li><Link to="/kisiekle" className={""+(active === 2 && "active")}>Kişi Ekle</Link></li>
-                                    <li><Link to="/" className={""+(active === 3 && "active")}>Kişi Düzenle</Link></li>
-                                    <li><Link to="/" className={""+(active === 4 && "active")}>Kişi Sil</Link></li>
                               </ul>
                         </Container>
                         <Container className="nav-footer">
