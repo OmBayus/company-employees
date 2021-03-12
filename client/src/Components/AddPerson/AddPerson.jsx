@@ -19,7 +19,7 @@ const AddPerson = ()=>{
 
 
       //For error handling
-      const [Check,setCheck] = useState({isError:false,msg:"Hata"})
+      const [Check,setCheck] = useState({isError:false,msg:"Hata",color:"danger"})
       //Img State
       const [file, setFile] = useState([]);
       //New Person State 
@@ -61,7 +61,7 @@ const AddPerson = ()=>{
             const temp = people.filter(item=> String(item.no) === User.no)
 
             if(temp.length > 0){
-                  setCheck({isError:true,msg:"Bu sicil no ya sahip kullanıcı var."})
+                  setCheck({isError:true,msg:"Bu sicil no ya sahip kullanıcı var.",color:"danger"})
                   setTimeout(()=>{setCheck({isError:false,msg:"Hata"})},10000)
             }
             else{
@@ -74,11 +74,13 @@ const AddPerson = ()=>{
 
                   if(res.error){
                         setCheck({isError:true,msg:res.error})
-                        setTimeout(()=>{setCheck({isError:false,msg:"Hata"})},10000)
+                        setTimeout(()=>{setCheck({isError:false,msg:"Hata",color:"danger"})},4000)
                   }
                   else{
-                        console.log(res)
+                        // console.log(res)
                         setPeople(prevValue=>[...prevValue,res])
+                        setCheck({isError:true,msg:"Kişi Başarıyla Eklendi",color:"primary"})
+                        setTimeout(()=>{setCheck({isError:false,msg:"Hata",color:"danger"})},4000)
                   }
             }
 
@@ -90,7 +92,7 @@ const AddPerson = ()=>{
 
       return(
       <div className="addperson">
-            {Check.isError && <div className="addPerson-alert"><Fade top><Alert variant="danger">{Check.msg}</Alert></Fade></div>}
+            {Check.isError && <div className="addPerson-alert"><Fade top><Alert variant={Check.color}>{Check.msg}</Alert></Fade></div>}
             <Container className="text-center">
                   <div className="addperson-form">
                         <img id="resim" src="#" alt="img" className="addperson-img" />

@@ -64,8 +64,11 @@ router.post("/",(req,res)=>{
 })
 
 
-router.delete("/",(req,res)=>{
-      Person.deleteOne({_id:"6047db50d893850c9cbff94e"}).then(item=>{res.json(item)})
+router.delete("/:id",(req,res)=>{
+      const param = Number(req.params.id)
+      Person.findOneAndDelete({no:param})
+            .then(item=>{res.json(item)})
+            .catch(err=>res.json({error:err.message}))
 })
 
 

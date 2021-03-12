@@ -4,3 +4,9 @@
       align-items: center;
       text-align: center;
 }
+
+.alert{
+      position: fixed;
+      top: 10px;
+      left: 45%;
+}

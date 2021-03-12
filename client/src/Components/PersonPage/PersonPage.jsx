@@ -1,7 +1,12 @@
-import React, { useContext } from "react"
-import {useRouteMatch} from "react-router-dom"
+import React, { useContext, useState } from "react"
+import {useRouteMatch,Redirect} from "react-router-dom"
+import { confirmAlert } from 'react-confirm-alert';
 
-import { Button, Container } from "react-bootstrap"
+import { Button, Container,Alert } from "react-bootstrap"
+
+import {Fade} from "react-reveal"
+
+import PeopleService from "../../services/People"
 
 import {Context} from "../../Context"
 
@@ -12,12 +17,39 @@ const PersonPage = ()=>{
 
       const { peopleContext } = useContext(Context)
 
-      const people = peopleContext[0]
+      const [Check,setCheck] = useState({isCheck:false,msg:"Hata",color:"danger",route:false})
+
+      const [people,setPeople] = peopleContext
 
       const match = useRouteMatch("/:id")
 
       const deletePerson = ()=>{
-            console.log("deleted")
+            confirmAlert({
+                  title: 'Kullanıcı Sil',
+                  message: 'Emin Misiniz?',
+                  buttons: [
+                    {
+                      label: 'Evet',
+                      onClick: () => {
+                            PeopleService.Delete(match.params.id)
+                              .then((data)=>{
+                                    var temp = people.filter(item=>Number(item.no) !== Number(data.data.no))
+                                    setPeople(temp)
+                                    setCheck({isCheck:true,msg:"Başıryla Silindi",color:"primary",route:false})
+                                    setTimeout(()=>setCheck({isCheck:false,msg:"Hata",color:"danger",route:true}),2000)
+                              })
+                              .catch((err)=>{
+                                    setCheck({isCheck:true,msg:"Bir Hata ile Karşılaşıldı",color:"danger",route:false})
+                                    setTimeout(()=>setCheck({isCheck:false,msg:"Hata",color:"danger",route:false}),3000)
+                                    console.log(err)
+                              })
+                        }
+                    },
+                    {
+                      label: 'Hayır'
+                    }
+                  ]
+            });
       }
 
       const changePerson = ()=>{
@@ -26,8 +58,10 @@ const PersonPage = ()=>{
 
       
       return(<Container className="personPage">
+            {Check.route && <Redirect to="/" />}
+            {Check.isCheck && <div className="alert"><Fade top><Alert variant={Check.color}>{Check.msg}</Alert></Fade></div>}
             {people.filter(item=>String(item.no) === String(match.params.id)).map(item=>(
-                  <div>
+                  <div key={match.params.id}>
                         <img src={item.imgPath} alt="pp" />
                         <h1 className="mt-3">{item.name}</h1>
                         <h3>{item.unvan}</h3>
