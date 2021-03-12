@@ -32,7 +32,7 @@
   border: 2px dashed blue;
 }
 
-.login-alert{
+.addPerson-alert{
   position: fixed;
   top: 10px;
   left: 45%;

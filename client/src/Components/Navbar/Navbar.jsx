@@ -45,16 +45,12 @@ const Navbar = ({active})=>{
 
       const {peopleContext} = useContext(Context)
 
-      const [people,setPeople] = peopleContext
+      const people = peopleContext[0]
 
 
       const handleNav = ()=>{
             setIsOpen(!isOpen)
       }
-
-      useEffect(()=>{
-            setPeople(prevValue=>prevValue) // Just made to ignore error message
-      },[setPeople])
       
       return(
             <div>

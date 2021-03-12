@@ -1,7 +1,5 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import { Container, Form, Row, Col,Card } from "react-bootstrap"
-
-import PeopleService from "../../services/People"
 
 import {Context} from "../../Context"
 
@@ -23,16 +21,10 @@ const Main = ()=>{
 
       const [search,setSearch] = useState({name:"",unvan:""})
 
-      const {peopleContext} = useContext(Context)
+      const { peopleContext } = useContext(Context)
 
-      const [people,setPeople] = peopleContext
+      const people = peopleContext[0]
 
-      useEffect(()=>{
-            PeopleService.getAll()
-                  .then(data=>{
-                        setPeople(data)
-                  })
-      },[setPeople])
 
       const handleClick = (e)=>{
             console.log(e.target)

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState } from "react"
 import Dropzone from "react-dropzone";
 
 import { Container, Form, Button,Alert } from "react-bootstrap"
@@ -24,14 +24,6 @@ const AddPerson = ()=>{
       const [file, setFile] = useState([]);
       //New Person State 
       const [User,setUser] = useState({name:"",unvan:"Çalışan",no:""})
-
-      //Get Data from server
-      useEffect(()=>{
-            PeopleService.getAll()
-                  .then(data=>{
-                        setPeople(data)
-                  })
-      },[setPeople])
 
       //Get img in client
       const handleDrop = acceptedFiles =>{
@@ -98,7 +90,7 @@ const AddPerson = ()=>{
 
       return(
       <div className="addperson">
-            {Check.isError && <div className="login-alert"><Fade top><Alert variant="danger">{Check.msg}</Alert></Fade></div>}
+            {Check.isError && <div className="addPerson-alert"><Fade top><Alert variant="danger">{Check.msg}</Alert></Fade></div>}
             <Container className="text-center">
                   <div className="addperson-form">
                         <img id="resim" src="#" alt="img" className="addperson-img" />
