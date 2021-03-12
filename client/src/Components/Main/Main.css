@@ -11,6 +11,11 @@
 .main-user{
       margin: 0 auto;
       margin-top: 20px;
-      cursor: pointer;
       width: 18rem;
+      color: black;
+}
+
+.main-user:hover{
+      box-shadow: 1px 2px 5px black;
+      color: rgba(0, 0, 0, 0.713);
 }

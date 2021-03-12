@@ -1,19 +1,22 @@
 import React, { useContext, useState } from "react"
 import { Container, Form, Row, Col,Card } from "react-bootstrap"
+import {Link} from "react-router-dom"
 
 import {Context} from "../../Context"
 
 import "./Main.css"
 
-const MainUser = ({click,info})=>(
-      <Card className="main-user" onClick={click}>
-            <Card.Img variant="top" src={info.imgPath} />
-            <Card.Body>
-            <Card.Title>{info.name}</Card.Title>
-            <Card.Title>{info.unvan}</Card.Title>
-            <Card.Title>{info.no}</Card.Title>
-            </Card.Body>
-      </Card>
+const MainUser = ({info})=>(
+      <Link to={"/"+info.no}>
+            <Card className="main-user">
+                  <Card.Img variant="top" src={info.imgPath} />
+                  <Card.Body>
+                  <Card.Title>{info.name}</Card.Title>
+                  <Card.Title>{info.unvan}</Card.Title>
+                  <Card.Title>{info.no}</Card.Title>
+                  </Card.Body>
+            </Card>
+      </Link>
 ) 
 
 
@@ -25,10 +28,6 @@ const Main = ()=>{
 
       const people = peopleContext[0]
 
-
-      const handleClick = (e)=>{
-            console.log(e.target)
-      }
 
       const handleSearch = (e)=>{
 
@@ -64,7 +63,7 @@ const Main = ()=>{
                   <Row>
                   {
                         people.filter(item=>item.unvan.toLocaleLowerCase().includes(search.unvan.toLocaleLowerCase())).filter(item=>(item.name.toLocaleLowerCase().includes(search.name.toLocaleLowerCase()) || String(item.no).toLocaleLowerCase().includes(search.name.toLocaleLowerCase()))).map((item,index)=>(
-                              <Col md={4} key={index}><MainUser click={handleClick} info={item}/></Col>
+                              <Col md={4} key={index}><MainUser info={item}/></Col>
                         ))
                   }
                   </Row>

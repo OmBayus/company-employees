@@ -7,6 +7,7 @@ import {Provider} from "./Context"
 import Navbar from "./Components/Navbar/Navbar"
 import Main from "./Components/Main/Main"
 import AddPerson from "./Components/AddPerson/AddPerson"
+import PersonPage from "./Components/PersonPage/PersonPage"
 
 function App() {
   
@@ -20,6 +21,10 @@ function App() {
         <Route path="/kisiekle">
           <Navbar active={2}/>
           <AddPerson/>
+        </Route>
+        <Route path="/:id">
+          <Navbar/>
+          <PersonPage/>
         </Route>
       </Switch>
     </Provider>
