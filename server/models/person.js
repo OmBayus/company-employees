@@ -25,7 +25,7 @@ const personSchema = new mongoose.Schema({
     required:true
   },
   no:{
-        type:Number,
+        type:String,
         required:true
   },
   imgPath:String

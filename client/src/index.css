@@ -9,3 +9,9 @@ body {
 a:hover{
   text-decoration: none;
 }
+.alert{
+  position: fixed;
+  bottom: 10px;
+  left: 45%;
+  white-space: nowrap!important;
+}

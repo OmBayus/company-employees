@@ -1,14 +1,18 @@
 import React, { useContext, useState } from "react"
 import Dropzone from "react-dropzone";
 
-import { Container, Form, Button,Alert } from "react-bootstrap"
-import Fade from "react-reveal"
+import { Container, Form, Button} from "react-bootstrap"
+import MuiAlert from '@material-ui/lab/Alert';
 
 import PeopleService from "../../services/People"
 
 import {Context} from "../../Context"
 
 import "./AddPerson.css"
+
+function Alert(props) {
+      return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 
 const AddPerson = ()=>{
@@ -61,7 +65,7 @@ const AddPerson = ()=>{
             const temp = people.filter(item=> String(item.no) === User.no)
 
             if(temp.length > 0){
-                  setCheck({isError:true,msg:"Bu sicil no ya sahip kullanıcı var.",color:"danger"})
+                  setCheck({isError:true,msg:"Bu sicil no ya sahip kullanıcı var.",color:"error"})
                   setTimeout(()=>{setCheck({isError:false,msg:"Hata"})},10000)
             }
             else{
@@ -74,13 +78,13 @@ const AddPerson = ()=>{
 
                   if(res.error){
                         setCheck({isError:true,msg:res.error})
-                        setTimeout(()=>{setCheck({isError:false,msg:"Hata",color:"danger"})},4000)
+                        setTimeout(()=>{setCheck({isError:false,msg:"Hata",color:"error"})},4000)
                   }
                   else{
                         // console.log(res)
                         setPeople(prevValue=>[...prevValue,res])
-                        setCheck({isError:true,msg:"Kişi Başarıyla Eklendi",color:"primary"})
-                        setTimeout(()=>{setCheck({isError:false,msg:"Hata",color:"danger"})},4000)
+                        setCheck({isError:true,msg:"Kişi Başarıyla Eklendi",color:"success"})
+                        setTimeout(()=>{setCheck({isError:false,msg:"Hata",color:"error"})},4000)
                   }
             }
 
@@ -92,7 +96,7 @@ const AddPerson = ()=>{
 
       return(
       <div className="addperson">
-            {Check.isError && <div className="addPerson-alert"><Fade top><Alert variant={Check.color}>{Check.msg}</Alert></Fade></div>}
+            {Check.isError && <Alert severity={Check.color} className="alert">{Check.msg}</Alert>}
             <Container className="text-center">
                   <div className="addperson-form">
                         <img id="resim" src="#" alt="img" className="addperson-img" />

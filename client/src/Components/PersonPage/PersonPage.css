@@ -5,8 +5,6 @@
       text-align: center;
 }
 
-.alert{
-      position: fixed;
-      top: 10px;
-      left: 45%;
+.personpage-img{
+      max-height: 300px;
 }
