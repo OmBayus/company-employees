@@ -84,6 +84,8 @@ const PersonPage = ()=>{
                   .then((data)=>{
                         var temp = people.filter(item=>String(item.no) !== String(data.data.no))
                         setPeople(temp)
+                        console.log(data)
+                        console.log(temp)
                         setCheck({isCheck:true,msg:"Başıryla Silindi",color:"success",route:false})
                         setTimeout(()=>setCheck({isCheck:false,msg:"Hata",color:"error",route:true}),2000)
                   })

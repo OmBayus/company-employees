@@ -115,7 +115,12 @@ router.delete("/:id",(req,res)=>{
       var path = `${__dirname}/../uploads/${param}.png`
       Person.findOneAndDelete({no:param})
             .then(item=>{
-                  fs.unlinkSync(path)
+                  try {
+                        fs.unlinkSync(path) 
+                  } catch (error) {
+                        console.log(error)
+                  }
+                  
                   res.json(item)
             })
             .catch(err=>res.json({error:err.message}))
