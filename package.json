@@ -1,0 +1,16 @@
+{
+  "name": "employee",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server":"cd ./server && npm start",
+    "client":"cd ./client && npm start",
+    "start":"concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.0.0"
+  }
+}

@@ -82,7 +82,7 @@ const PersonPage = ()=>{
             setOpenDelPop(false);
             PeopleService.Delete(match.params.id)
                   .then((data)=>{
-                        var temp = people.filter(item=>item.no !== data.data.no)
+                        var temp = people.filter(item=>String(item.no) !== String(data.data.no))
                         setPeople(temp)
                         setCheck({isCheck:true,msg:"Başıryla Silindi",color:"success",route:false})
                         setTimeout(()=>setCheck({isCheck:false,msg:"Hata",color:"error",route:true}),2000)

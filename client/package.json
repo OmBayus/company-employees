@@ -12,7 +12,6 @@
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
-    "react-confirm-alert": "^2.7.0",
     "react-dom": "^17.0.1",
     "react-dropzone": "^11.3.1",
     "react-reveal": "^1.2.2",
