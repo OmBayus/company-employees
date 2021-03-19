@@ -21,7 +21,6 @@ This project has made with react.
 ````
 npm install
 ````
-This process needs to do for main files, client and server
 
 ## Start MongoDB Server
 
@@ -36,3 +35,9 @@ MongoDB Server <a href="https://www.mongodb.com/try/download/community">İnstall
 ````
 npm start
 ````
+
+### License & copyright
+
+Copyright (c) 2021 Omer Bayramcavus
+
+Licensed under the [MIT License](LICENSE).
